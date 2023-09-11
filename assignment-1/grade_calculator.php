@@ -17,7 +17,6 @@
     <input type="number" id="grade_3" name="grade_3" required
            value="<?php echo(!empty($_POST["grade_3"]) ? $_POST['grade_3'] : 0) ?>">
     <br>
-    <br>
     <input type="submit" value="Result">
 </form>
 
