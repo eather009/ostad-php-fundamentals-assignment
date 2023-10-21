@@ -6,7 +6,7 @@ use UserInterfaces\UserInterface;
 
 class UserManagements extends UserAbstract implements UserInterface
 {
-    private $userFile = "./data/user-list.txt";
+    private string $userFile = ROOT_DIR . "/data/user-list.txt";
 
     public function __construct(){
         session_start();
@@ -26,9 +26,32 @@ class UserManagements extends UserAbstract implements UserInterface
 
         return false;
     }
-    public function checkPassword(string $password, string $hashPassword): bool
+    protected function checkPassword(string $password, string $hashPassword): bool
     {
         return password_verify($password, $hashPassword);
+    }
+
+    public function getUsers(){
+        if($this->getRole() !== 'Admin'){
+            header(LOGIN_URL['success']);
+        }
+
+        $allUsers = [];
+        $fp = fopen($this->userFile, 'rb');
+        while ($line = fgets($fp)) {
+            $values = explode(",", $line);
+            $username = trim($values[0]);
+            $email = trim($values[2]);
+
+            $allUsers[] = [
+                'username' => $username,
+                'email' => $email
+            ];
+        }
+        fclose($fp);
+
+
+        return $allUsers;
     }
 
     public function setName($name): void
@@ -101,14 +124,14 @@ class UserManagements extends UserAbstract implements UserInterface
                 exit;
             }
 
-            $fp = fopen($this->userFile, 'ab');
+            $fp = fopen($this->userFile, 'ab+');
 
             while ($line = fgets($fp)) {
                 $values = explode(",", $line);
                 $username = trim($values[0]);
                 $email = trim($values[2]);
-                if($username === $_POST['username'] ||
-                    $email === $_POST['email']){
+                if($username === $usernamePost ||
+                    $email === $emailPost){
 
                     header(REGISTER_URL['error1']);
                     exit;

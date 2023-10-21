@@ -22,10 +22,10 @@ abstract class UserAbstract
         return $this->role;
     }
 
-    public function hashPassword(string $password):string{
+    protected function hashPassword(string $password):string{
 
         return password_hash($password,PASSWORD_BCRYPT);
     }
 
-    abstract public function checkPassword(string $password, string $hashPassword):bool;
+    abstract protected function checkPassword(string $password, string $hashPassword):bool;
 }

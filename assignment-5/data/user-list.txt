@@ -1,3 +1,4 @@
 eather, $2y$10$YbQNz/SQu0oHBFjTOqxgwOv70wJs7N5UnJxXSF.NCrR/mmRjDEafe, eather.ahmed@gmail.com, User
 admin, $2y$10$H5EhMzrZzTtNi/2kEKR1XeGyaeDkv47xDl/eD/iz2G/AE1wMVnKHO, admin@admin.com, Admin
 manager, $2y$10$hE9jP3E2xEB/VEt/wZsVK.ClmpbGA8fAmK3RaTyEQXBNXAqQreAsG, manage@manage.com, Manager
+user1, $2y$10$9Baol0DWYL642lxjoUS1RudWjTWbykpLei6/Zf3504ia6dyxXy/SC, user1@export-japan.co.jp, User
