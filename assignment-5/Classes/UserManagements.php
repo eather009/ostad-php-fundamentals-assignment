@@ -49,9 +49,9 @@ class UserManagements extends UserAbstract implements UserInterface
     public function login()
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST" &&
-            !empty($_POST['username']) && !empty($_POST['password'])) {
+            !empty($_POST['email']) && !empty($_POST['password'])) {
 
-            $usernamePost = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+            $emailPost = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             $passwordPost = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
             $fp = fopen($this->userFile, 'rb');
@@ -62,7 +62,7 @@ class UserManagements extends UserAbstract implements UserInterface
                 $email = trim($values[2]);
                 $role = trim($values[3]);
 
-                if($username === $usernamePost &&
+                if($email === $emailPost &&
                     $this->checkPassword($passwordPost, $password)) {
                     $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
